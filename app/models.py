@@ -12,85 +12,93 @@ class Item(models.Model):
     https://docs.djangoproject.com/ja/2.1/ref/models/fields/
     """
 
-    # サンプル項目1 文字列
-    sample_1 = models.CharField(
-        verbose_name='サンプル項目1 文字列',
-        max_length=20,
+    # 商品ID
+    item_id = models.IntegerField(
+        verbose_name='商品ID',
         blank=True,
         null=True,
     )
 
-    # サンプル項目2 メモ
-    sample_2 = models.TextField(
-        verbose_name='サンプル項目2 メモ',
+    # 商品名
+    item_name = models.CharField(
+        verbose_name='商品名',
+        max_length=100,
         blank=True,
         null=True,
     )
 
-    # サンプル項目3 整数
-    sample_3 = models.IntegerField(
-        verbose_name='サンプル項目3 整数',
+    # 品番
+    item_number = models.CharField(
+        verbose_name='品番',
+        max_length=100,
         blank=True,
         null=True,
     )
 
-    # サンプル項目4 浮動小数点
-    sample_4 = models.FloatField(
-        verbose_name='サンプル項目4 浮動小数点',
+    # 商品価格(税別)
+    item_price = models.IntegerField(
+        verbose_name='商品価格(税抜)',
         blank=True,
         null=True,
     )
 
-    # サンプル項目5 固定小数点
-    sample_5 = models.DecimalField(
-        verbose_name='サンプル項目5 固定小数点',
-        max_digits=5,
-        decimal_places=2,
+    # 商品区分
+    item_category = models.CharField(
+        verbose_name='商品区分',
+        max_length=100,
         blank=True,
         null=True,
     )
 
-    # サンプル項目6 ブール値
-    sample_6 = models.BooleanField(
-        verbose_name='サンプル項目6 ブール値',
-    )
-
-    # サンプル項目7 日付
-    sample_7 = models.DateField(
-        verbose_name='サンプル項目7 日付',
+    # 商品種類
+    item_kind = models.CharField(
+        verbose_name='商品種類',
+        max_length=100,
         blank=True,
         null=True,
     )
 
-    # サンプル項目8 日時
-    sample_8 = models.DateTimeField(
-        verbose_name='サンプル項目8 日時',
+    # 商品詳細
+    item_detail = models.TextField(
+        verbose_name='商品詳細',
         blank=True,
         null=True,
     )
 
-    # サンプル項目9 選択肢（固定）
-    sample_9_choice = (
-        (1, '選択１'),
-        (2, '選択２'),
-        (3, '選択３'),
-    )
-
-    sample_9 = models.IntegerField(
-        verbose_name='サンプル項目9_選択肢（固定）',
-        choices=sample_9_choice,
+    # 商品メモ
+    item_memo = models.TextField(
+        verbose_name='商品詳細',
         blank=True,
         null=True,
     )
 
-    # サンプル項目9 選択肢（マスタ連動）
-    sample_10 = models.ForeignKey(
-        User,
-        verbose_name='サンプル項目10_選択肢（マスタ連動）',
+    # janコード
+    item_code = models.IntegerField(
+        verbose_name='janコード',
+        max_length=13,
         blank=True,
         null=True,
-        related_name='sample_10',
-        on_delete=models.SET_NULL,
+    )
+
+    # 在庫数
+    item_stock = models.IntegerField(
+        verbose_name='在庫数',
+        blank=True,
+        null=True,
+    )
+
+    # 単品重量(g)
+    item_weight = models.IntegerField(
+        verbose_name='単品重量(g)',
+        blank=True,
+        null=True,
+    )
+
+    # 登録日
+    item_resist_date = models.DateField(
+        verbose_name='登録日',
+        blank=True,
+        null=True,
     )
 
     # 以下、管理項目
