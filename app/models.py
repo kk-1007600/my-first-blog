@@ -75,7 +75,6 @@ class Item(models.Model):
     # janコード
     item_code = models.IntegerField(
         verbose_name='janコード',
-        max_length=13,
         blank=True,
         null=True,
     )
