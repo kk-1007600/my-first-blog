@@ -2,6 +2,83 @@ from django.db import models
 
 from users.models import User
 
+class M_Item(models.Model):
+    """
+    商品マスタテーブル
+    """
+
+    # 商品ID
+    item_id = models.IntegerField(
+        verbose_name='商品ID',
+        blank=True,
+        null=True,
+    )
+
+    # 商品名
+    item_name = models.CharField(
+        verbose_name='商品名',
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+
+    # 品番
+    item_number = models.CharField(
+        verbose_name='品番',
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+
+    # 商品価格(税別)
+    item_price = models.IntegerField(
+        verbose_name='商品価格(税抜)',
+        blank=True,
+        null=True,
+    )
+    
+    # 商品詳細
+    item_detail = models.TextField(
+        verbose_name='商品詳細',
+        blank=True,
+        null=True,
+    )
+    
+    # janコード
+    item_code = models.IntegerField(
+        verbose_name='janコード',
+        blank=True,
+        null=True,
+    )
+
+class M_Item(models.Model):
+    """
+    商品種別マスタテーブル
+    """
+    
+    # 商品ID
+    item_id = models.IntegerField(
+        verbose_name='商品ID',
+        blank=True,
+        null=True,
+    )
+    
+    # 商品区分
+    item_category = models.CharField(
+        verbose_name='商品区分',
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+
+    # 商品種類
+    item_kind = models.CharField(
+        verbose_name='商品種類',
+        max_length=100,
+        blank=True,
+        null=True,
+    )
+    
 
 class Item(models.Model):
     """
@@ -67,7 +144,7 @@ class Item(models.Model):
 
     # 商品メモ
     item_memo = models.TextField(
-        verbose_name='商品詳細',
+        verbose_name='商品メモ',
         blank=True,
         null=True,
     )
