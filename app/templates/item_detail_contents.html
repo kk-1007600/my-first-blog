@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品ID</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.item_id|default_if_none:"未入力"  }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品名</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.item_name|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>品番</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.item_number|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品価格(税別)</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.item_price|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品区分</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{  item.item_category|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品種類</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_kind|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品詳細</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_detail|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>商品メモ</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_memo|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>janコード</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_code|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>在庫数</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_stock|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>単品重量(g)</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_weight|default_if_none:"未入力" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>登録日</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.item_resist_date|date:"Y年m月d日" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>作成者</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.created_by.get_full_name }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>作成時間</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.created_at|date:"Y/m/d G:i:s" }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>更新者</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.updated_by.get_full_name }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <p>更新時間</p>
+    </div>
+    <div class="col-7 col-sm-9">
+        <p>{{ item.updated_at|date:"Y/m/d G:i:s" }}</p>
+    </div>
+</div>
