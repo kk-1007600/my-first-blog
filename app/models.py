@@ -222,7 +222,7 @@ class Item(models.Model):
         """
         リストボックスや管理画面での表示
         """
-        return self.sample_1
+        return str(self.item_id)
 
     class Meta:
         """
