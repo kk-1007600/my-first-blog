@@ -1,14 +1,19 @@
-
 from django.db import models
 
 from users.models import User
 
-class M_Item(models.Model):
+
+class ItemMaster(models.Model):
     """
     商品マスタテーブル
     """
+    id = models.IntegerField(
+        verbose_name='id',
+        primary_key=True,
+        blank=False,
+        null=False,
+    )
 
-    # 商品ID
     item_id = models.IntegerField(
         verbose_name='商品ID',
         blank=True,
@@ -37,14 +42,14 @@ class M_Item(models.Model):
         blank=True,
         null=True,
     )
-    
+
     # 商品詳細
     item_detail = models.TextField(
         verbose_name='商品詳細',
         blank=True,
         null=True,
     )
-    
+
     # janコード
     item_code = models.IntegerField(
         verbose_name='janコード',
@@ -52,18 +57,22 @@ class M_Item(models.Model):
         null=True,
     )
 
-class M_Item(models.Model):
+    def __str__(self):
+        return u"{0}:{1}... ".format(self.id, self.item_id[:10])
+
+
+class ItemCategoryMaster(models.Model):
     """
     商品種別マスタテーブル
     """
-    
+
     # 商品ID
     item_id = models.IntegerField(
         verbose_name='商品ID',
         blank=True,
         null=True,
     )
-    
+
     # 商品区分
     item_category = models.CharField(
         verbose_name='商品区分',
@@ -79,7 +88,7 @@ class M_Item(models.Model):
         blank=True,
         null=True,
     )
-    
+
 
 class Item(models.Model):
     """

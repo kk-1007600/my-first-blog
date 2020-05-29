@@ -1,0 +1,17 @@
+{% extends "./_base.html" %}
+{% block content %}
+	{{ form.certifications.errors }}
+    <h5>【更新画面】</h5>
+    <a href="{% url 'master' %}">一覧画面へ</a>
+    <form action="" method="post">
+        {{ form.errors.message }}
+        <label>{{ form.item_id.label }}{{ form.item_id }}</label><br/>
+        <label>{{ form.item_name.label }}{{ form.item_name }}</label><br/>
+        <label>{{ form.item_number.label }}{{ form.item_number }}</label><br/>
+        <label>{{ form.item_price.label }}{{ form.item_price }}</label><br/>
+        <label>{{ form.item_detail.label }}{{ form.item_detail }}</label><br/>
+        <label>{{ form.item_code.label }}{{ form.item_code }}</label><br/>
+        {% csrf_token %}
+        <input type="submit" value="更新">
+    </form>
+{% endblock %}

@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template.base import logger
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import DetailView
@@ -7,8 +9,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django_filters.views import FilterView
 
 from .filters import ItemFilterSet
-from .forms import ItemForm
-from .models import Item
+from .forms import ItemForm, ItemMasterForm
+from .models import Item, ItemMaster, ItemCategoryMaster
 
 
 # 未ログインのユーザーにアクセスを許可する場合は、LoginRequiredMixinを継承から外してください。
@@ -102,7 +104,7 @@ class ItemCreateView(LoginRequiredMixin, CreateView):
         item.updated_at = timezone.now()
         item.save()
 
-        return HttpResponseRedirect(self.success_url)
+        return redirect(self.success_url)
 
 
 class ItemUpdateView(LoginRequiredMixin, UpdateView):
@@ -122,7 +124,7 @@ class ItemUpdateView(LoginRequiredMixin, UpdateView):
         item.updated_at = timezone.now()
         item.save()
 
-        return HttpResponseRedirect(self.success_url)
+        return redirect(self.success_url)
 
 
 class ItemDeleteView(LoginRequiredMixin, DeleteView):
@@ -139,4 +141,49 @@ class ItemDeleteView(LoginRequiredMixin, DeleteView):
         item = self.get_object()
         item.delete()
 
-        return HttpResponseRedirect(self.success_url)
+        return redirect(self.success_url)
+
+
+# 仮でDetailViewを呼び出し
+def master(request):
+    """ 単純なHTML文字列を返す
+    この関数はHTMLの文字列を生成し、その文字列をHttpResponseを使って、HTTP用に変換したものを返します。
+    """
+
+    d = {
+        'masters': ItemMaster.objects.all(),
+    }
+
+    # return HttpResponse(html)
+    return render(request, 'app/master.html', d)
+
+
+def edit(request, editing_id):
+    item_master = get_object_or_404(ItemMaster, id=editing_id)
+    if request.method == 'POST':
+        form = ItemMasterForm(request.POST)
+        if form.is_valid():
+            item_master.item_id = form.cleaned_data['item_id']
+            item_master.item_name = form.cleaned_data['item_name']
+            item_master.item_number = form.cleaned_data['item_number']
+            item_master.item_price = form.cleaned_data['item_price']
+            item_master.item_detail = form.cleaned_data['item_detail']
+            item_master.item_code = form.cleaned_data['item_code']
+            item_master.save()
+
+            return redirect('master')
+
+    else:
+        # GETリクエスト（初期表示）時はDBに保存されているデータをFormに結びつける
+        form = ItemMasterForm({'item_id': item_master.item_id,
+                               'item_name': item_master.item_name,
+                               'item_number': item_master.item_number,
+                               'item_price': item_master.item_price,
+                               'item_detail': item_master.item_detail,
+                               'item_code': item_master.item_code,
+                               })
+        d = {
+            'form': form,
+        }
+
+        return render(request, 'app/edit.html', d)
